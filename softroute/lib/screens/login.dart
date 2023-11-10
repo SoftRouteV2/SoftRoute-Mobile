@@ -1,9 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:softroute/screens/welcome.dart';
+import 'package:softroute/services/shipment_service.dart';
 import 'package:softroute/styles/styles.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  //create a text editing controller called codeController
+
+  TextEditingController codeController = TextEditingController();
+
+  void searchShipment(String code) {
+    print("This is the entered Code");
+    print(code);
+
+    ShipmentService().getShipmentByCode(code).then((shipment) {
+      if (shipment.id != 0) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Welcome(),
+            ));
+      }
+
+      print("SHIPMENT NOT FOUND");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +84,9 @@ class Login extends StatelessWidget {
                 //create an input field
                 const SizedBox(height: 20),
                 TextField(
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  controller: codeController,
                   decoration: InputDecoration(
                     hintText: "Enter Shipment Code",
                     hintStyle: GoogleFonts.montserrat(
@@ -86,12 +118,7 @@ class Login extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Login(),
-                        ),
-                      );
+                      searchShipment(codeController.text);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: buttonColor,
