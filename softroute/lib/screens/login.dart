@@ -85,7 +85,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
 
-                const SizedBox(height: 100),
+                const SizedBox(height: 80),
                 Text(
                   "Shipment Code",
                   style: GoogleFonts.montserrat(
