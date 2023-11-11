@@ -43,7 +43,7 @@ class Welcome extends StatelessWidget {
 
               const SizedBox(height: 20),
               Text(
-                "See the location and status of you shipment in real time",
+                "See the location and status of your shipment in real time",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.montserrat(
                   color: Colors.white,

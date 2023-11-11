@@ -98,7 +98,7 @@ class _ShipmentDetailsState extends State<ShipmentDetails> {
                   min: -20,
                   appearance: CircularSliderAppearance(
                     angleRange: 240,
-                    size: MediaQuery.of(context).size.width * 0.5,
+                    size: MediaQuery.of(context).size.width * 0.7,
                     customColors: CustomSliderColors(
                       hideShadow: true,
                       progressBarColors: [

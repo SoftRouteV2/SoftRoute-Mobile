@@ -5,6 +5,8 @@ import 'package:softroute/screens/shipment_details.dart';
 import 'package:softroute/services/shipment_service.dart';
 import 'package:softroute/styles/styles.dart';
 
+import '../widgets/error_snackbar.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -30,9 +32,19 @@ class _LoginState extends State<Login> {
             MaterialPageRoute(
               builder: (context) => const ShipmentDetails(),
             ));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            duration: Duration(seconds: 5),
+            content: CustomSnackBarContent(
+              errorText: "The CODE you entered is not valid. Please try again.",
+            ),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+        );
       }
-
-      print("SHIPMENT NOT FOUND");
     });
   }
 
