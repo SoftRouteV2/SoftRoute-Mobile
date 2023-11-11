@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:softroute/screens/welcome.dart';
+import 'package:softroute/screens/shipment_details.dart';
 import 'package:softroute/services/shipment_service.dart';
 import 'package:softroute/styles/styles.dart';
 
@@ -22,11 +22,13 @@ class _LoginState extends State<Login> {
     print(code);
 
     ShipmentService().getShipmentByCode(code).then((shipment) {
+      print("object");
+
       if (shipment.id != 0) {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Welcome(),
+              builder: (context) => const ShipmentDetails(),
             ));
       }
 

@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import '../models/shipment.dart';
 
 class ShipmentService {
-  String basePath = "http://192.168.43.190:8090/api/v1/shipment";
+  //String basePath = "http://192.168.43.190:8090/api/v1/shipment";
+  String basePath = "http://localhost:8090/api/v1/shipment";
 
   //get shipment by code
   Future<Shipment> getShipmentByCode(String code) async {
