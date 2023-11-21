@@ -23,6 +23,21 @@ class _LoginState extends State<Login> {
     print("This is the entered Code");
     print(code);
 
+    if (code.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 5),
+          content: CustomSnackBarContent(
+            errorText: "Please enter a valid code.",
+          ),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+      );
+      return;
+    }
+
     ShipmentService().getShipmentByCode(code).then((shipment) {
       print("object");
 
@@ -30,7 +45,7 @@ class _LoginState extends State<Login> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const ShipmentDetails(),
+              builder: (context) => ShipmentDetails(code: code),
             ));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
