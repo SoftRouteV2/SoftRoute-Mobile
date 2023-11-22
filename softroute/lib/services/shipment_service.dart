@@ -6,7 +6,7 @@ import '../models/shipment.dart';
 
 class ShipmentService {
   //Actualizar tu dirección IP ---ABAJO---
-  String basePath = "http://192.168.18.6:8090/api/v1/shipment";
+  String basePath = "https://sofroute.azurewebsites.net/api/v1/shipment";
 
   //String basePath = "http://localhost:8090/api/v1/shipment";
 

@@ -6,6 +6,7 @@ import 'package:softroute/services/shipment_service.dart';
 import 'package:softroute/styles/styles.dart';
 
 import '../widgets/error_snackbar.dart';
+import 'Tracking_details.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -46,6 +47,50 @@ class _LoginState extends State<Login> {
             context,
             MaterialPageRoute(
               builder: (context) => ShipmentDetails(code: code),
+            ));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            duration: Duration(seconds: 5),
+            content: CustomSnackBarContent(
+              errorText: "The CODE you entered is not valid. Please try again.",
+            ),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+        );
+      }
+    });
+  }
+
+  void searchShipmentTracking(String code) {
+    print("This is the entered Code");
+    print(code);
+
+    if (code.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 5),
+          content: CustomSnackBarContent(
+            errorText: "Please enter a valid code.",
+          ),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+      );
+      return;
+    }
+
+    ShipmentService().getShipmentByCode(code).then((shipment) {
+      print("object");
+
+      if (shipment.id != 0) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TrackingDetails(code: code),
             ));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -165,7 +210,36 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     child: Text(
-                      "Search",
+                      "Temperture",
+                      style: GoogleFonts.roboto(
+                          fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      searchShipmentTracking(codeController.text);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonTrackingColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 20,
+                      ),
+                      textStyle: GoogleFonts.roboto(
+                        color: primaryColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    child: Text(
+                      "Tracking",
                       style: GoogleFonts.roboto(
                           fontSize: 22, fontWeight: FontWeight.bold),
                     ),

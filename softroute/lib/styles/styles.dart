@@ -10,3 +10,4 @@ const Color tertiaryColor = Color(0xff30C4EC);
 const Color quaternaryColor = Color(0xffA527ED);
 
 const Color buttonColor = Color(0xff6200EE);
+const Color buttonTrackingColor = Color(0xffe31b6e);

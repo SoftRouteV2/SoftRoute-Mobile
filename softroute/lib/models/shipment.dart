@@ -1,5 +1,6 @@
 import 'package:softroute/models/dht22.dart';
 import 'package:softroute/models/sender.dart';
+import 'package:softroute/models/tracking.dart';
 
 import 'destination.dart';
 import 'employee.dart';
@@ -17,6 +18,7 @@ class Shipment {
   final Destination destination;
   final String consignee;
   final Dht22 dht22;
+  final Tracking tracking;
 
   Shipment({
     required this.id,
@@ -31,6 +33,7 @@ class Shipment {
     required this.destination,
     required this.consignee,
     required this.dht22,
+    required this.tracking
   });
 
   factory Shipment.fromJson(Map<String, dynamic> json) {
@@ -47,6 +50,7 @@ class Shipment {
       destination: Destination.fromJson(json['destination']),
       consignee: json['consignee'],
       dht22: Dht22.fromJson(json['dht22']),
+      tracking: Tracking.fromJson(json['tracking'])
     );
   }
 
@@ -84,6 +88,11 @@ class Shipment {
         temperature: '',
         humidity: '',
       ),
+      tracking: Tracking(
+        trackingId: 0,
+        latitude: '',
+        longitude: ''
+      )
     );
   }
 }

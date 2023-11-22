@@ -39,6 +39,8 @@ dependencies:
   http: ^1.1.0
   sleek_circular_slider: ^2.0.1
   flutter_svg: ^2.0.9
+  geolocator: ^10.1.0
+  google_maps_flutter: ^2.2.0
 
 dev_dependencies:
   flutter_test:
